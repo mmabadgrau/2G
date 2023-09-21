@@ -1,0 +1,65 @@
+<html>
+<head>
+<title>TDT<sub>P</sub></title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+ <link href="/css/normal.css" rel="stylesheet" type="text/css">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000">
+<p><font size="4"><b><font size="5">Users' documentation for TDT<sub>P</sub> in c++</font></b></font></p>
+<p><br>
+  <b><font size="4">Installation</font></b></p>
+
+<p>Note: Please, substitute &lt;ver&gt; by the current version in all explantions below.
+
+<p><b>Compiled version:</b></p>
+<p>Compiled version for linux.-After you have succesfully obtained the archive 
+  you can execute the following Unix commands to install the program:</p>
+<ul>
+<li>gzip TDTP&lt;ver&gt;.gz</li>
+</ul>
+<p><b>Source code version:</b></p>
+<p>Source code version for linux.-After you have succesfully obtained the archive 
+  you can execute the following Unix commands to install the program:</p>
+<ul>
+  <li>gzip TDTP&lt;ver&gt;.tar.gz</li>
+  <li>tar xvf TDTP&lt;ver&gt;.tar</li>
+  <li>cd TDTP&lt;ver&gt;</li>
+  <li>make</li>
+</ul>
+<p><font size="4"><b>Execution</b></font></p>
+<p>To use TDTP, use the following command line:</p>
+<p>./TDTP&lt;ver&gt; &lt;filename&gt;  &lt;solve phase&gt; &lt;window width&gt; &lt;window offset&gt;</p>
+<p>where &lt;filename&gt; is the input file with format as shown below.</p>
+<p>A second argument can be used to change the default value (0) which considers input data already ordered by haplotypes (i.e., the first allele at each snp come from the father, the second from the mother). If 1 is used, the E-M algorithm considering families will be used to estimate haplotype frequencies, and haplotypes will be weighted by their frequencies (Zhang et al. 2003, "TDT based on haplotype sharing for tightly linked markers", AJHG 73, pp.566-69).
+<br>A third argument can be used to change the default window width which is set to 10.
+<br>A third argument can be used to change the default window offset which is set to 1.
+<p>&nbsp;</p>
+
+<p><b>Format of the input file</b> </p>
+<p>A text file of SNP data set, in post-makeped format as described here:</p>
+<p>One row per individual, 7 + 2x<i>TotalSNPs</i>
+  columns, with <i>TotalSNPs</i> being the number of SNPs. Columns must be separared
+  by a blank or tab character.Each column must contain an integer.
+  <a href=../rTDT/rTDTInputSample.inp>See an example of input file</a>.
+  </p>
+<p>Description of columns: </p>
+<ul>
+  <li>Column 1: family code </li>
+  <li>Column 2: individual code </li>
+  <li>Column 3: father code (0 if the individual is not a child)</li>
+  <li>Column 4: mother code (0 if the individual is not a child)</li>
+  <li>Column 5: gender (not used by rTDT)</li>
+  <li>Column 6: affection status (not used by rTDT)</li>
+  <li>Column 7: another individual id (not used by rTDT) </li>
+  <li>Columns 8 until 7+2*<i>TotalSNPs</i>: SNPs values (each SNP uses two contiguous
+    columns). Example: if SNP1 value for an individual is 12 (heterozygous), column8
+    will have the value 1 and column9 will have the 2.</li>
+</ul>
+
+<p><b>Output for the program TDTP</b></p>
+<p>The output will be written at a file with the same name as the input file 
+  but with the extension &quot;.cal&quot;. The output file is a csv text file with one line for each SNPs and one column for each method (mTDT<sub>P</sub>, mTDT<sub>2G</sub>, mTDT, mTDT<sub>1T</sub> and mTDT<sub>1U</sub>).</p>
+</body>
+</html>
+

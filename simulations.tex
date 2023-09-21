@@ -1,0 +1,167 @@
+\documentclass[runningheads]{/home/mabad/conferences/LNCS/llncs}
+
+\usepackage{amssymb}
+\setcounter{tocdepth}{3}
+\usepackage{graphicx,multirow,hhline}
+\usepackage{url}
+\newcommand{\keywords}[1]{\par\addvspace\baselineskip
+\noindent\keywordname\enspace\ignorespaces#1}
+
+\newcommand{\vs}[0]{\vspace{-4.2 mm}}
+
+\begin{document}
+
+\mainmatter 
+
+
+\title{Simulations}
+
+
+\titlerunning{Simulations}
+
+
+
+\author{Mar\'{\i}a M. Abad-Grau\inst{1}
+\thanks{Corresponding author: mabad@ugr.es}, Nuria Medina-Medina\inst{1}, Rosana Montes\inst{1} and Fuencisla Matesanz \inst{2}}
+%
+
+
+
+\authorrunning{Abad-Grau et al.}   % abbreviated author list (for running head)
+
+\institute{Departamento de Lenguajes y Sistemas Inform\'aticos \\Universidad de Granada, Granada 18071, Spain\\
+\and Instituto de Parasitolog{\'i}a y Biomedicina L\'opez Neyra \\
+Consejo Superior de Investigaciones Cient{\'i}ficas \\
+Granada, Spain \\
+}
+
+\date{}
+
+\maketitle
+
+
+
+
+\section{Simulation studies}\label{sec:simulations}
+
+\subsubsection{Simulation setup.}
+
+We have performed simulation analyses using genotype datasets of family trios with the intention to compare performance between $\chi^2-T_{mhet}$ and Monte Carlo $T_{mhet}$.
+We have tried to reproduce the same simulations used in several works to check accuracy in TDTs\cite{Sham.97,Zhang.zz.2003,Yu.zz.2005}. Therefore, we have performed simulation analyses using haplotype data sets of $200$ nuclear families (family trios with both parents and a child).
+Association rates were estimated based on $100$ replications 
+of the simulations below described \cite{Sham.97,Zhang.zz.2003,Yu.zz.2005}.
+%Our goal was to study specificity and sensitivity with one and two disease susceptibility loci are 
+%associated with a trait, considering different genetic distances. 
+
+Only consecutive or overlapping clusters of SNPs (which are known as sliding windows) will be tested together.
+In order to have simulations of a cluster as it was suggested by Crawford et al. \cite{Crawford.zz.2004}, we assumed that recombination rates within all markers tested is very low, which is equivalent to assume they belong to the same low recombination block\cite{Daly.zz.2001}.
+The recombination fraction within blocks ($\theta_B$) for a common population with exponential growing, such as an African population, has been estimated to be $0.000088$ \cite{Hinds.zz.2005} and this is the value used in this work. 
+
+We also modified the way to introduce a disease mutation compared with other works \cite{Sham.97,Zhang.zz.2003,Yu.zz.2005}. Instead of considering only one ancestral chromosome with the disease causing mutation, or the improvement of using two ancestral chromosomes \cite{Zhang.zz.2003}, a more realistic simulation of inheritance of complex diseases was used, in which the number of disease ancestral chromosomes can change, according to the coalescent model, as any other gene does.
+ %genotype data sets, so that blocks of low recombination can be inferred from the current data set instead of 
+%using external information about gene boundaries. 
+
+Populations were drawn using 
+%two different computer programs that will be mentioned below.
+msHOT \cite{Hellenthal.Stephens.2007}, a program for generating samples based on the coalescent model that incorporates recombination. 
+The samples from  all the  populations were obtained using {\em trioSampling}, a computer program available at the supplementary website. 
+
+
+In the following subsections, we will describe the details about the simulations and will highlight those departures from the setup  commonly used \cite{Sham.97,Zhang.zz.2003,Yu.zz.2005}.
+
+
+
+
+\subsection{Locus specificity and sensitivity}
+
+
+Simulations for power (sensitivity), i.e., assuming no recombination between the disease-susceptibility locus and some of the markers, are also similar to those used in several works assuming one-founder disease haplotype \cite{Lam.zz.2000,Zhang.zz.2003,Yu.zz.2005} with the intention to evaluate the power of different methods, except that SNPs used are assumed to be in high LD, i.e., they belong to the same low recombination block \cite{Daly.zz.2001}. 
+
+
+Regarding the way to generate samples from populations (one for each population), four parameters  were taken into account. Table \ref{tab:Sconfigurations} shows the parameters and their values. The first parameter, the relative risk of being homozygous for the risk allele, $RR$, varies from $2$ to $10$ in steps of $2$ in the simulations. The second parameter is the number of disease loci used: one and two different disease susceptibility loci were considered. The third parameter is the genetic disease model. Affected and non-affected individuals were drawn by considering different genetic models for the one and two disease susceptibility loci \cite{Yu.zz.2005}: additive, dominant and recessive (only locus) and additive, domAnDom, domOrDom, recOrRec, threshold and modified for two loci, and different relative genotype risks (RR) of having genotype $DD$, defined as $Pr(disease\mid DD)/Pr(disease\mid dd)$ (one disease locus) and of having joint genotypes $DD$ and $EE$, defined as $Pr(disease\mid DD,EE)/Pr(disease\mid dd,ee)$ (two disease loci), with $d$ And $e$ being the normal alleles and $D$ and $E$ the disease alleles. Relative risks for all other genotypes are computed based on RR \cite{Fan.zz.2001,Yu.zz.2005} (Table \ref{tab:RR}).
+
+
+The four parameter is added in our work in order to check the decay in association rates due to genetic distance. We considered $5$ different recombination fractions ($\theta$) from the markers to the disease susceptibility locus, ranging from perfect LD (no recombination) to $\theta=0.0002$.
+%Figure \ref{fig:simulationsSchema} schematically shows recombination rates (within block and to the disease susceptibility loci). $10$ SNPs (the $10$ central rectangles of each row)    
+% within a low recombination block are chosen for the tests. Disease loci are rectangles shown at both extremes of the $10$ SNPs. It has to be noted that to use a recombination fraction between a marker and a disease locus of $0$, is equivalent to say that the disease locus belongs to the same block (see Figure \ref{fig:simulationsSchema} a).  For only one disease locus, the SNP on the right is disregarded. 
+
+
+Regarding the way to draw populations, it was the same as the one used to test robustness, except that only one parameter has been used \cite{Lam.zz.2000,Zhang.zz.2003,Yu.zz.2005}: the number of disease-susceptibility loci (one or two). The parameter of recombination fraction introduced in our simulations to choose the markers for the samples, forced us to modify the pattern of population growth in order  to simulate LD decay with distance in a more realistic way in the human population \cite{Kruglyak.99,Crawford.zz.2004}. Thus, after the first $50$ generations with constant size \cite{Lam.zz.2000,Zhang.zz.2003,Yu.zz.2005}, we increased the number of generations with exponential growth from $100$ to $5000$ and the present population size to $100000$ (predictions with sample size of only $10000$ are also consistent with larger and closer sizes to the actual human population \cite{Kruglyak.99}). 
+To be more consistent with real populations and complex diseases in which different number of founders can carry the disease loci, we used the coalescent model \cite{Nordborg.2001} to draw populations with a variable number of founder haplotypes and population growth as explained above.
+Any position can be a disease susceptibility locus. Disease founder haplotypes are chosen by selecting one SNP whose mutant allele has frequencies in the interval $[0.2, 0.4]$, in order to mimic a common disease \cite{Yu.zz.2005}. To generate these population sets and in order to select SNPs from the population at different recombination rates from the disease susceptibility locus, we used msHOT \cite{Hellenthal.Stephens.2007}.    
+%Under the coalescent model with a variable number of disease founder haplotypes, we generated populations with two different configurations of population growth. One with exponential growth after the first $500$ generations at a constant size and recombination fraction within a block of $0.000088$ cM. This may be similar to an African population. The other with a bottle neck $1000$ generations after the population started growing and recombination fraction of $0.000207$ within a block to mimetize a European population (genetic distance in Europeans is $0.0207$ cM \cite{Hinds.zz.2005}).
+
+
+
+
+\begin{table}[hb] 
+\centering 
+
+\caption{Alleles $E$ and $D$ are the high-risk disease alleles at the corresponding disease locus. The relative genotype risk of a given two-locus joint genotype is calculated using the penetrance of the joint genotype of ee and dd as the baseline. For example, the relative genotype risk of having joint genotype eE and dD is defined as $Pr(disease\mid eR,dD)/Pr(disease\mid ee,dd)$. The relative genotype risk of the joint genotype EE and DD is denoted as RR, which varies from 2 to 10 in steps of 2  in our simulations. Source: \cite{Yu.zz.2005,Fan.zz.2001}.}
+\begin{tabular}{l|c|c|c|c}
+\hline
+& Genotype & \multicolumn{3}{c} {Genotype at disease locus 2} \\
+& at disease & \multicolumn{3}{c}{} \\
+Model & locus 1 & dd & dD & DD \\
+\hline 
+Additive & ee & 1 & $1+\frac 1 4 (RR-1)$ & $1+\frac 1 2 (RR-1)$  \\
+& eE & $1+ \frac 1 4 (RR-1)$ & $1+\frac 1 2 (RR-1)$ & $1+\frac 3 4 (RR-1)$ \\
+& EE & $1+\frac 1 2 (RR-1)$ & $1+\frac 1 2 (RR-1)$ & RR \\
+\hline
+DomOrDom & ee & 1 & RR & RR \\
+& eE & RR & RR & RR \\
+& EE & RR & RR & RR \\
+\hline
+DomAndDom & ee & 1 & 1 & 1 \\
+& eE & 1 & RR & RR \\
+& EE & 1 & RR & RR \\
+\hline
+RecOrRec & ee & 1 & 1 & RR \\
+& eE & 1 & 1 & RR \\
+& EE & RR & RR & RR \\
+\hline
+Threshold & ee & 1 & 1 & 1 \\
+& eE & 1 & 1 & RR \\
+& EE & 1 & RR & RR \\
+\hline
+Modified & ee & 1 & 1 & RR \\
+& eE & 1 & 1 & RR \\
+& EE & 1 & RR & RR \\
+\hline
+
+\end{tabular}
+\label  {tab:RR}
+\end{table} 
+
+
+
+\begin{table}[hb] 
+\centering 
+
+\caption{Values used to configure sample parameters used in specificity/sensitivity simulations.}
+\begin{tabular}{|l|c|}
+\hline
+Relative risk & 2, 4, 6, 8, 10 \\
+\hline
+Genetic model & additive, recessive, dominant \\
+\hline
+$\theta$ to disease loci & 0, 5e-05,  1e-04, 1.5e-04, 2e-04\\
+\hline
+Haplotype length & 1, 2, 4, 6, 8, 10 \\
+\hline
+\end{tabular}
+\label  {tab:Sconfigurations}
+\end{table} 
+
+
+
+\bibliographystyle {/home/mabad/conferences/LNCS/splncs}  %{../llncs/splncs}
+\bibliography{PTDT}
+
+
+
+
+
+
+\end{document}
+
